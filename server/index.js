@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({extended: true}));
   
 MongoClient.connect('mongodb+srv://test:test@cluster0-hlkqt.mongodb.net/test?retryWrites=true', { useNewUrlParser: true } ,(err, db) => {
     // ... start the server
+    console.log(db)
     var dbase = db.db("MYtineraryDB");
       if (err) 
         return console.log(err)
@@ -24,6 +25,7 @@ MongoClient.connect('mongodb+srv://test:test@cluster0-hlkqt.mongodb.net/test?ret
     //Get All Cities
     router.get('/cities', (req, res) => {
         citiesCollection.find().toArray( (err, results) => {
+            console.log()
             if (err)
                 return res.send({
                     success: false,

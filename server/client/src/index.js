@@ -8,14 +8,15 @@ import MYtinerary from './MYtinerary';
 import Account from './Account';
 import Cities from './Cities';
 import Login from './Login';
-import { createStore } from 'redux';
+import { createStore , applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import rootReducer from './reducers/rootReducer';
+import rootReducer from './Store/Reducers/rootReducer';
+import thunk from 'redux-thunk';
+
 
 const routing = (
     <Router>
-      <div>
-        
+      <div>      
         <Switch>
           <Route exact path="/" component={App} />
           <Route path="/MYtinerary" component={MYtinerary} />
@@ -27,11 +28,13 @@ const routing = (
     </Router>
   )
 
-// const store = createStore(rootReducer)
-// <Provider store={store}></Provider>
-ReactDOM.render(routing, document.getElementById('root'));
+const store = createStore(rootReducer ,applyMiddleware(thunk));
+
+
+ReactDOM.render(<Provider store={store}>{routing}</Provider>, document.getElementById('root'));
+
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();

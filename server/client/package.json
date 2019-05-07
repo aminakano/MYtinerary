@@ -8,6 +8,7 @@
       "<rootDir>src/setupTests.js"
     ]
   },
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "pure-react-carousel": "^1.19.4",
     "react": "^16.8.6",

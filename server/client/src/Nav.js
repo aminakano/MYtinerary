@@ -4,8 +4,8 @@ class Hamburger extends Component {
         return(
         <div className="Nav">
             <input id="menu-cb" type="checkbox" value="off"/>
-            <label id="menu-icon" for="menu-cb"><i className="fas fa-bars"></i></label>
-            <label id="menu-background" for="menu-cb"></label>
+            <label id="menu-icon" htmlFor="menu-cb"><i className="fas fa-bars"></i></label>
+            <label id="menu-background" htmlFor="menu-cb"></label>
             <div id="ham-menu">
             <ul>
             <li>
