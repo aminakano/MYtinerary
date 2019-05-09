@@ -22,10 +22,10 @@ MongoClient.connect('mongodb+srv://test:test@cluster0-hlkqt.mongodb.net/test?ret
     
     const citiesCollection = dbase.collection('cities');
 
-    //Get All Cities
+    // Get All Cities
     router.get('/cities', (req, res) => {
         citiesCollection.find().toArray( (err, results) => {
-            console.log()
+            
             if (err)
                 return res.send({
                     success: false,
@@ -36,6 +36,46 @@ MongoClient.connect('mongodb+srv://test:test@cluster0-hlkqt.mongodb.net/test?ret
                 data: results
             })
         });
+    });
+
+    // get itineraries by keywords
+    const itinerariesCollection = dbase.collection('itineraries');
+    const cityCollection = dbase.collection('cities')
+    router.get('/itineraries/:reference', (req, res) => {
+        const reference = req.params.reference;
+        console.log(reference)
+        // itinerariesCollection.find().toArray( (err, results) => {
+            
+        //     if (err)
+        //         return res.send({
+        //             success: false,
+        //             message: "Error: Server Error"
+        //         })
+
+        //     return res.send({
+        //         success: true,
+        //         data: results.filter(itnerary => itnerary.ref.includes(reference))
+        //     })
+           
+        // });
+
+        itinerariesCollection.find({
+            ref: {
+                $all: [reference]
+            }
+        }).toArray((err, results) => {
+            if (err)
+                return res.send({
+                    success: false,
+                    message: "Error: Server Error"
+                })
+
+            return res.send({
+                success: true,
+                data: results
+            })
+        })
+
     });
 
 

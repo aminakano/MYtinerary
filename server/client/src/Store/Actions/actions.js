@@ -30,3 +30,28 @@ export function fetchCities(){
         .catch(err => console.error(err))
     }
 }
+
+export const getItineraries=(itineraries)=>{
+    return {
+        type: "GET_ITINERARIES",
+        itineraries
+    }
+}
+export function fetchItineraries(city){
+    return dispatch =>{
+        fetch("/api/itineraries/" + city,{
+            method:"GET",
+            mode: "no-cors",
+            headers:{
+                'accept': "application/json",
+                'content-type': "application/x-www-form-urlencoded"
+            }
+        })
+        .then(response => response.json())
+        .then(json => {
+            console.log(json);
+            dispatch(getItineraries(json.data))
+        })
+        .catch(err => console.error(err))
+    }
+}

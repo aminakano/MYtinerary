@@ -19,7 +19,7 @@ const routing = (
       <div>      
         <Switch>
           <Route exact path="/" component={App} />
-          <Route path="/MYtinerary" component={MYtinerary} />
+          <Route path="/MYtinerary/:city" component={MYtinerary} />
           <Route path="/Cities" component={Cities} />
           <Route path="/Account" component={Account} />
           <Route path="/Login" component={Login} />

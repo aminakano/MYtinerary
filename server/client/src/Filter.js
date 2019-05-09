@@ -7,17 +7,17 @@ import * as actionCreator from './Store/Actions/actions';
 class Filter extends Component{
     constructor(){
         super()
-        this.state={
-         
-           
+        this.state={               
             filtered:[],
             counter: 0,
         }
        
-    }
-    
+    } 
+    handleButtonValue = (city)=>{
+        var cityName = city.charAt(0).toLowerCase()+city.slice(1);
+        window.location.href = "MYtinerary/" + cityName;
+    }   
     filterList=(e)=>{
-        console.log(e.target.value)
         if(e.target.value == "") {
             this.setState({filtered: this.props.cities})
 
@@ -30,7 +30,7 @@ class Filter extends Component{
     }
     render(){
         if(this.props.citiesIsLoaded == true ){
-        this.state.counter++;
+            this.state.counter++;
 
             if(this.state.counter == 1){
                 this.setState({
@@ -47,7 +47,7 @@ class Filter extends Component{
             display:'flex',
             justifyContent:'center'
         }
-     // sorting array ascending
+        // sorting array ascending
         if(this.props.citiesIsLoaded == true){
             const sortArray = this.state.filtered.sort(function(a,b){
                 if(a.cityName < b.cityName) return -1;
@@ -62,7 +62,7 @@ class Filter extends Component{
                 </form>
                 <div className="cities">                   
                     {sortArray.map((obj, index)=>{
-                        return( <div><div className="cityNames">{obj.cityName}</div><img src={obj.image} alt="destinations" style={styles}/></div>)
+                        return( <div onClick={ ()=> {this.handleButtonValue(obj.cityName)}}><div className="cityNames">{obj.cityName}</div><img src={obj.image} alt="destinations" style={styles}/></div>)
                     })}
                 </div>
 
