@@ -19,8 +19,7 @@ class Header extends Component {
             
             <div>
                 <div style={styles}>
-                    {/* <div className="User">
-                    <i className="fas fa-user-circle"></i></div> */}
+                   
                     <UserIcon />
                     
                 </div>

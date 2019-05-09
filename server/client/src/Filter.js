@@ -10,8 +10,7 @@ class Filter extends Component{
         this.state={               
             filtered:[],
             counter: 0,
-        }
-       
+        }       
     } 
     handleButtonValue = (city)=>{
         var cityName = city.charAt(0).toLowerCase()+city.slice(1);
@@ -62,7 +61,13 @@ class Filter extends Component{
                 </form>
                 <div className="cities">                   
                     {sortArray.map((obj, index)=>{
-                        return( <div onClick={ ()=> {this.handleButtonValue(obj.cityName)}}><div className="cityNames">{obj.cityName}</div><img src={obj.image} alt="destinations" style={styles}/></div>)
+                        return( 
+                            <div onClick={ ()=> {this.handleButtonValue(obj.cityName)}}>
+                                <div className="cityNames">{obj.cityName}
+                                </div>
+                                <img src={obj.image} alt="destinations" style={styles}/>
+                            </div>
+                        )
                     })}
                 </div>
 

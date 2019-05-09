@@ -51,6 +51,7 @@ export function fetchItineraries(city){
         .then(json => {
             console.log(json);
             dispatch(getItineraries(json.data))
+            
         })
         .catch(err => console.error(err))
     }
