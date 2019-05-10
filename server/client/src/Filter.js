@@ -13,7 +13,8 @@ class Filter extends Component{
         }       
     } 
     handleButtonValue = (city)=>{
-        var cityName = city.charAt(0).toLowerCase()+city.slice(1);
+        var cityName = city.charAt(0).toLowerCase()+city.slice(1).replace(/\s+/g, "").toLowerCase();
+        
         window.location.href = "MYtinerary/" + cityName;
     }   
     filterList=(e)=>{
@@ -56,8 +57,7 @@ class Filter extends Component{
         return(
             <div>
                 <form style={formStyle}>
-                     <input type="text" placeholder="Search your destination!" onChange={this.filterList} className="filterText"/>
-                     
+                     <input type="text" placeholder="Search your destination!" onChange={this.filterList} className="filterText"/>                     
                 </form>
                 <div className="cities">                   
                     {sortArray.map((obj, index)=>{

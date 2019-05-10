@@ -3,6 +3,7 @@ import Hamburger from './Nav';
 import UserIcon from './UserIcon';
 import { connect } from 'react-redux';
 import * as actionCreator from './Store/Actions/actions';
+import ShowItinerary from './ShowItinerary';
 
 let cityUrl = window.location.pathname.split("/")[2];
 
@@ -33,7 +34,10 @@ class MYtinerary extends Component {
             textAlign: 'center'
         }
         const style4 = {
-            width: '30%'
+            width: '30%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
         }
         const style5 = {
             width: '70%'
@@ -48,13 +52,10 @@ class MYtinerary extends Component {
             justifyContent: 'space-around',
             
         }
-        // const updateList = this.setState({showItinerary:this.props.itineraries})
-       
-        // itinerariesToShow=(city)=>{
-        //     if(location.pathname == "/MYtinerary/"+ city){
-
-        //     }
-        // }
+        const margin = {
+            margin: '0'
+        }
+        
         return (
             <div>
                 <Hamburger /> 
@@ -67,7 +68,7 @@ class MYtinerary extends Component {
                        <div>{obj.city}</div>
                         <div style={styles}>
                             <div style={style2}>
-                                <div style={style4}><img src={obj.profilePic}alt="user" style ={style6}></img></div>
+                                <div style={style4}><img src={obj.profilePic}alt="user" style ={style6}></img><p style={margin}>{obj.user}</p></div>
                                 <div style={style5}>
                                     <div><h5>{obj.title}</h5></div> 
                                     <div style={style7}>
@@ -75,10 +76,19 @@ class MYtinerary extends Component {
                                         <div>{obj.duration}Hours</div>
                                         <div>{obj.price}</div>
                                     </div>
-                                <div>{obj.hashtag}</div>
+                                <div>{"#"+obj.hashtag.join("#")}</div>
                                 </div>
                             </div>
-                            <div style={style3}>View All</div>
+                            {/* <div style={style3}>View All</div>
+                            <div>
+                            
+                            
+                               <ShowItinerary images={obj.photos}/>
+                            </div> */}
+                            <details style={style3}>
+                                <summary>View All</summary>
+                                <ShowItinerary images={obj.photos}/>
+                            </details>
                         </div>
                         
                    </div>
