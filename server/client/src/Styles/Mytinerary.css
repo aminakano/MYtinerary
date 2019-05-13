@@ -1,0 +1,67 @@
+.cover {
+    height:25vh;
+    width: 100%;
+    position: relative;
+    padding-top: 5%;
+}
+.coverName {
+  background: rgba(238,238,238,0.7);
+  padding:3%;
+  width:8em;
+  text-align: center;
+  border-radius: 5px;
+  position: absolute;
+  top: 17%;
+  left: 35%;
+  font-weight: bold;
+}
+h5 {
+    text-align: center;
+}
+.paddingLeft {
+    padding-left: 5%;
+}
+.itinerary-result{
+    background:#e8f3ff;
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2%;
+}
+.style2{
+    display: flex;
+    justify-content: space-between;
+}
+.style3{
+    background: #84b4e5;
+    height:38vh;
+    text-align: center;
+}
+.style3[open] summary::before{
+    content: "Show less";
+    color: #d1d4d6;
+}
+.style3[open]{
+    height:50vh;
+}
+.style3 > summary::before{
+    content: "View All";
+}
+.style4{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.style5{
+    width:70%;
+}
+.style6{
+    width: 6em;
+    height: 6em;
+    border-radius: 50%;
+}
+.style7{
+    display: flex;
+    justify-content: space-around;
+}

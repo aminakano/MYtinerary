@@ -5,12 +5,23 @@
     overflow-x: scroll;
     scroll-padding: 0 50%;
     scroll-snap-type: x mandatory;
+    background: #84b4e5;
+
 }
 li {
     scroll-snap-align: center;
     display: inline-block;
-    height: 83vh;
     border-radius: 3px;
     font-size: 0;
     margin-right: 3rem;
+}
+li:first-child {
+    padding-left:12%;
+}
+li:last-child {
+    padding-right:12%;
+}
+.MySlider >li >img {
+    width:230px;
+    height:160px;
 }

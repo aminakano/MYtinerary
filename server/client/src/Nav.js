@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Styles/Nav.css'
 class Hamburger extends Component {
     render(){
         return(
@@ -7,23 +8,23 @@ class Hamburger extends Component {
             <label id="menu-icon" htmlFor="menu-cb"><i className="fas fa-bars"></i></label>
             <label id="menu-background" htmlFor="menu-cb"></label>
             <div id="ham-menu">
-            <ul>
-            <li>
-                <a href="/">Home</a>
-            </li>
-            <li>
-                <a href="/MYtinerary">MYtinerary</a>
-            </li>
-            <li>
-                <a href="/Cities">Cities</a>
-            </li>
-            <li>
-                <a href="/Account">Account</a>
-            </li>
-            <li>
-                <a href="/Login">Login</a>
-            </li>
-            </ul> 
+                <ul className="navLink">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="/MYtinerary">MYtinerary</a>
+                    </li>
+                    <li>
+                        <a href="/Cities">Cities</a>
+                    </li>
+                    <li>
+                        <a href="/Account">Account</a>
+                    </li>
+                    <li>
+                        <a href="/Login">Login</a>
+                    </li>
+                </ul> 
             </div>
         </div>
         )

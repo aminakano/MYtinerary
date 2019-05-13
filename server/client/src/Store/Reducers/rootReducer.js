@@ -3,7 +3,7 @@ const initState = {
    
     ],
     citiesIsLoaded: false,
-    itineraries:[]
+    itineraries:{}
 }
 function rootReducer(state = initState, action){
     if(action.type == "GET_CITIES"){

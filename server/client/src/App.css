@@ -24,14 +24,14 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
-}
+} */
 .Header {
   display: flex;
   justify-content: space-between;
@@ -46,8 +46,6 @@
 .User {
   width:3em;
   height:3em;
-  /* background: #282c34; */
-  /* border-radius: 50%; */
 }
 .User >i {
   font-size: 3em;
@@ -146,71 +144,6 @@ summary >.Hamburger >i {
   font-size: 3em;
 }
 
-/* Nav Hamburger */
-#ham-menu {
-  background-color: #fff;
-  box-sizing: border-box;
-  height: 100%;
-  padding: 10px 40px; 
-  position: fixed;
-  right: -300px; 
-  top: 0;
-  transition: transform 0.3s linear 0s; 
-  width: 300px; 
-  z-index: 1000;
-}
-#ham-menu > ul > li {
-  margin: 10% 0;
-}
-#menu-background {
-  background-color: #333; 
-  display: block;
-  height: 100%;
-  opacity: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
-  transition: all 0.3s linear 0s; 
-  width: 100%;
-  z-index: -1;
-}
-
-#menu-icon {
-  background-color: #fff; 
-  border-radius: 0 0 0 10px; 
-  color: #333; 
-  cursor: pointer;
-  display: block;
-  font-size: 50px; 
-  height: 50px; 
-  line-height: 50px; 
-  position: fixed;
-  right: 0;
-  text-align: center;
-  top: 0;
-  width: 50px; 
-  transition: all 0.3s linear 0s; 
-  z-index: 1000;
-}
-
-#menu-cb {
-  display: none; 
-}
-
-#menu-cb:checked ~ #ham-menu,
-#menu-cb:checked ~ #menu-icon {
-  transform: translate(-300px); 
-}
-
-#menu-cb:checked ~ #menu-background {
-  opacity: 0.5;
-  z-index: 999;
-}
-
-.Nav a {
-  font-size: 2em;
-  font-family: 'Fredericka the Great', cursive;
-}
 
 /* User icon  */
 summary::-webkit-details-marker{

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './SliderStyle.css';
+import './Styles/SliderStyle.css';
+
 class ShowItinerary extends Component {
     
     render(){
@@ -25,7 +26,7 @@ class ShowItinerary extends Component {
     }
     else {
         return (
-        <div>No photos</div>
+        <div>Coming soon</div>
         )
     }
        

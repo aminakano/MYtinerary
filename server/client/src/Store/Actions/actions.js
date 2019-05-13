@@ -47,12 +47,16 @@ export function fetchItineraries(city){
                 'content-type': "application/x-www-form-urlencoded"
             }
         })
+       
         .then(response => response.json())
-        .then(json => {
-            console.log(json);
-            dispatch(getItineraries(json.data))
-            
+        .then(res =>{
+            dispatch(getItineraries(res))
         })
+        // .then(json => {
+        //     console.log(json);
+        //     dispatch(getItineraries(json.data))
+            
+        // })
         .catch(err => console.error(err))
     }
 }
