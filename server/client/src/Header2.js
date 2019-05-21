@@ -13,7 +13,10 @@ class Header extends Component {
         };
         
         const pattaya ={
-            fontFamily: "'Pattaya', sans-serif"
+            fontFamily: "'Pattaya', sans-serif",
+            fontSize: "2em",
+            margin: "5%",
+            fontWeight: "inherit"
         }
         return(
             

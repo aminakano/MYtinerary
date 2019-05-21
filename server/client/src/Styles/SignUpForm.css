@@ -1,0 +1,94 @@
+h3 {
+    text-align: center;
+}
+label{
+    align-self: center;
+}
+button {
+    outline: none;
+}
+.signUp{
+    display: flex;
+    flex-direction: column;
+    
+  }
+.signUp input {
+    width:70%;
+    height:3.5em;
+    border: 1px solid gray;
+    border-radius: 5px;
+    /* font-size: 0.8em; */
+  }
+.addPhoto {
+    height: 8em;
+    width: 8em;
+    border-radius: 50%;
+    /* background: lightgray; */
+    background-image: linear-gradient(60deg, #96deda 0%, #50c9c3 100%);
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+.addPhoto input {
+    outline: none;
+    border: none;
+    color: transparent;
+    height: 2em;
+    /* width: 2em; */
+}
+.addPhoto input[type=file] {
+    opacity: 0;
+}
+.formParts {
+    display: flex;
+    justify-content: space-between;
+    padding: 2%;
+}
+select {
+    border: 1px solid gray;
+    outline: none;
+    font-size: 1.2em;
+    
+}
+#checkbox_id {
+    width: 10%;
+    height: 2.5em;
+}
+.TandC {
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+}
+.signUpBtn {
+    font-size: 2.2em;
+    width:50%;
+    align-self: center;
+    border: none;
+    background-image: linear-gradient(60deg, #96deda 0%, #50c9c3 100%);
+    border-radius: 30px;
+    color: white;
+}
+.LogInGoogle{
+    width: 75%;
+    height:2em;
+    align-self: center;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin-top: 5%;
+    font-size: 1.5em;
+    outline: none;
+}
+.remember {
+    justify-content: flex-start;
+    align-items: center;
+}
+.leadsToAccount {
+    width: 70%;
+    align-self: center;
+}
+.linkToAccount {
+    align-self: center;
+}

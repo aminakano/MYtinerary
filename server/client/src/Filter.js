@@ -45,7 +45,8 @@ class Filter extends Component{
         };    
         const formStyle ={
             display:'flex',
-            justifyContent:'center'
+            justifyContent:'center',
+            paddingBottom:'5%'
         }
         // sorting array ascending
         if(this.props.citiesIsLoaded == true){
@@ -62,7 +63,7 @@ class Filter extends Component{
                 <div className="cities">                   
                     {sortArray.map((obj, index)=>{
                         return( 
-                            <div onClick={ ()=> {this.handleButtonValue(obj.cityName)}}>
+                            <div onClick={ ()=> {this.handleButtonValue(obj.cityName)}} key={index}>
                                 <div className="cityNames">{obj.cityName}
                                 </div>
                                 <img src={obj.image} alt="destinations" style={styles}/>

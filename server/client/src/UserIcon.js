@@ -14,8 +14,8 @@ class UserIcon extends Component {
                         <div className="build">
                             {/* <h5>Want to build your own MYtenerary?</h5> */}
                             <div className="LoginLinks">
-                            <div><a href="./Login">Log in</a></div>
-                            <div><a href="./Account">Create Account</a></div>
+                            <div><a href="/Login">Log in</a></div>
+                            <div><a href="/Account">Create Account</a></div>
                         </div>
                     </div>
                 </details>

@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import Hamburger from './Nav';
+import UserIcon from './UserIcon';
+import LogInForm from '../src/Components/LogInForm'
 class Login extends Component {
     render() {
         return (
             <div>
                 <Hamburger />
-                <h1>Login</h1> 
+                <UserIcon />
+                 
+                <LogInForm />
             </div>
         );
     }

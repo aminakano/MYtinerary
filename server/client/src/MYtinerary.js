@@ -43,7 +43,7 @@ class MYtinerary extends Component {
                 <Hamburger /> 
                 <UserIcon />                       {this.props.itineraries.cities.map((obj,index)=>{
                     return (
-                    <div>                      
+                    <div key={index}>                       
                          <img src={obj.image} className="cover"/>
                          <div className="coverName">{obj.cityName}</div>
                     </div>
@@ -52,7 +52,7 @@ class MYtinerary extends Component {
                  <p className="paddingLeft">Available MYtineraries</p>
                {itineraries.map((obj, index)=>{
                    return (
-                   <div>
+                   <div key={index}>
                       
                         <div className="itinerary-result">
                             <div className="style2">

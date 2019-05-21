@@ -60,8 +60,8 @@ class MyCarrousel extends Component {
          const styles = {
             display: 'grid',
             gridTemplateRows: '50% 30%',
-            width: '90%',
-            margin:'0 5%'
+            width: '80%',
+            margin:'0 5% 0 9%'
             
          }
          return(<div className="slider" style={styles}>
