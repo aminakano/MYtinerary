@@ -12,12 +12,17 @@ button {
     flex-direction: column;
     
   }
+input:focus {
+    background: #96deda;
+}
 .signUp input {
     width:70%;
     height:3.5em;
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
+    
     border-radius: 5px;
-    /* font-size: 0.8em; */
+    font-size: 0.8em;
+    outline: none;
   }
 .addPhoto {
     height: 8em;

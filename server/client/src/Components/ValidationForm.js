@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import '../Styles/SignUpForm.css'
+import { connect } from 'react-redux';
+import * as actionCreator from '../Store/Actions/actions';
 
 const initialState = {
     username: "",
@@ -8,7 +10,7 @@ const initialState = {
     firstName: "",
     lastName: "",
     country:"",
-    hasAgreed: "",
+    hasAgreed: false,
     usernameError: "",
     passwordError: "",
     emailError: "",
@@ -18,17 +20,22 @@ const initialState = {
     hasAgreedError: "",
 
   };
-const countries=["England",
-"Germany",
-"France",
-"Holland",
-"Ireland",
-"Spain",
-"United States"];
+const countries=
+        ["England",
+        "Germany",
+        "France",
+        "Holland",
+        "Ireland",
+        "Spain",
+        "United States"];
 
 class ValidationForm extends Component {
-
-    state = initialState;
+    constructor(){
+        super();
+        this.state = initialState;
+       
+    }
+    
 
     onChange = event => {
             const isCheckbox = event.target.type === "checkbox";
@@ -62,13 +69,11 @@ class ValidationForm extends Component {
         if(!this.state.hasAgreed){
             hasAgreedError = "You need to agree";
         }
-        if (emailError || usernameError || passwordError || countryError ||hasAgreedError) {
+        if (emailError || usernameError || passwordError || countryError || hasAgreedError) {
           this.setState({ emailError, usernameError , passwordError ,countryError, hasAgreedError});
           return false;
         }
-        
-       
-    
+   
         return true;
       };
     
@@ -79,10 +84,11 @@ class ValidationForm extends Component {
               console.log(this.state);
               // clear form
               this.setState(initialState);
+              this.props.signUpUsers(this.state)
+              console.log(this.state)
             }
           };
-
-
+    
     render(){
         // console.log(this.state)
         const options = countries.map((option, key)=>{
@@ -115,7 +121,7 @@ class ValidationForm extends Component {
                      </div>
                     <div className="formParts">
                         <label htmlFor="password">Password:</label>
-                        <input type="text" 
+                        <input type="password" 
                         onChange={this.onChange}
                         value={this.state.password}
                         name="password"
@@ -183,7 +189,7 @@ class ValidationForm extends Component {
                     <div style={{ fontSize: 12, color: "red" }}>
                             {this.state.hasAgreedError}
                     </div>
-                    <button type="submit" className="signUpBtn">OK</button>
+                    <button type="submit"   className="signUpBtn" onClick={this.onSubmit}>OK</button>
                     
                 </form>
             </div>
@@ -191,7 +197,20 @@ class ValidationForm extends Component {
     }
 }
 
-export default ValidationForm;
+const mapStateToProps =(state)=>{
+    return {
+        userAdded: state.userAdded,
+        
+    }
+}
+const mapDispatchToProps =(dispatch)=>{
+    return {
+        signUpUsers: (user) => {
+            dispatch(actionCreator.signUpUsers(user))
+        }
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(ValidationForm);
 
 
 // import React from "react";

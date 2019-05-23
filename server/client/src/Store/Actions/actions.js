@@ -60,3 +60,26 @@ export function fetchItineraries(city){
         .catch(err => console.error(err))
     }
 }
+export function userSuccess(userAdded){
+    return {
+        type: "CREATE_USER",
+        userAdded
+    }
+}
+export function signUpUsers(userInfo){
+    console.log(userInfo.username);
+    return dispatch =>{
+        fetch('/api/users', {
+            method: 'POST',
+            headers: {
+                'content-type': "application/x-www-form-urlencoded"
+            },
+            body: "username=" + userInfo.username + "&password=" + userInfo.password + "&email=" + userInfo.email + "&firstName=" + userInfo.firstName + "&lastName=" + userInfo.lastName + "&country=" + userInfo.country            
+          }).then(res => res.json())
+            .then(json => {
+              console.log('json', json);
+             
+              
+            });
+    }
+}
