@@ -1,6 +1,6 @@
 const express = require('express');
 const MongoClient = require('mongodb').MongoClient
-var ObjectID = require('mongodb').ObjectID; // we will use this later
+var ObjectID = require('mongodb').ObjectID; 
 const bodyParser= require('body-parser')
 const app = express();
 var router = express.Router()
@@ -67,18 +67,60 @@ MongoClient.connect('mongodb+srv://test:test@cluster0-hlkqt.mongodb.net/test?ret
 
     });
     // post signup data
-    const usersCollection = dbase.collection('users');
+    
     router.post('/users', (req, res)=>{
-        // console.log(req.body);
-        let user = new UserSchema({ 
-            username: req.body.username,
-            password: req.body.password,
-            email: req.body.email,
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            country: req.body.country
-        });
-        usersCollection.save(user,(err, result)=>{
+        const usersCollection = dbase.collection('users');
+        const { body } = req;
+        const {
+                password,
+                firstName,
+                lastName,
+                username,
+                country
+            } = body;
+        let {
+        email
+        } = body;
+        // let email = req.body.email;
+        
+        email = email.toLowerCase();
+        email = email.trim();
+        
+        usersCollection.findOne({
+            email:email
+            
+        },(err, previousUsers)=>{
+            console.log(previousUsers)
+            if(err){
+                return res.send({
+                    success:false,
+                    message: "Error: Server error"
+                });
+            }else if(previousUsers != null){
+                return res.send({
+                    success: false,
+                    message: "Account already exists"
+                });
+            } 
+       
+        // let user = new UserSchema({ 
+        //     username: req.body.username,
+        //     password: req.body.password,
+        //     email: req.body.email,
+        //     firstName: req.body.firstName,
+        //     lastName: req.body.lastName,
+        //     country: req.body.country
+        // });
+        let newUser = new UserSchema();
+        newUser.username = username;
+        newUser.password = newUser.generateHash(password);
+        newUser.email = email;
+        newUser.firstName = firstName;
+        newUser.lastName = lastName;
+        newUser.country = country;
+
+        
+        usersCollection.save(newUser,(err, result)=>{
             if(err){
                 return res.send({
                     success: false,
@@ -90,10 +132,135 @@ MongoClient.connect('mongodb+srv://test:test@cluster0-hlkqt.mongodb.net/test?ret
                 message: 'Signed up'
             });
         });
+    
+    });
 
     });
 
+    router.post('/login',(req, res)=>{
+        
+        const { body } = req;
+        const {
+                password
+            } = body;
+        let {
+            email
+            } = body;
+        console.log(body);
+        const usersCollection = dbase.collection('users');
+        usersCollection.findOne({
+            email: email
+        }, (err, users)=>{
+           
+            if(err){
+                // console.log('err 2:',err);
+                return res.send({
+                    success:false,
+                    message: "Error: Server error"
+                });
+            }
+            
+            if(users == null){
+                return res.send({
+                    success: false,
+                    message: "Error: User not found"
+                });
+            }
+            let user = new UserSchema(users);
+             
+            console.log(user.validPassword(password));
+            if(!user.validPassword(password)){
+                return res.send({
+                    success:false,
+                    message: "Error: Invalid password"
+                });
+            }
+            return res.send({
+                success: true,
+                message: 'Valid sign in',
+                token: users._id
+            });  
 
+
+            // let userSession = new UserSchema({ 
+            //     username: req.body.username,
+            //     password: req.body.password,
+            // });
+            // userSession.userId = user._id;
+        //     userSession.save((err, doc) => {
+        //         if (err) {
+        //           console.log(err);
+        //           return res.send({
+        //             success: false,
+        //             message: 'Error: server error'
+        //           });
+        //         }
+                        
+        // });
+             
+
+     });
+    });
+    // verify
+    router.get('/verify',(req, res)=>{
+        const { query } = req;
+        const { token } = query;
+        const usersCollection = dbase.collection('users');
+        usersCollection.findOne({
+            _id: ObjectID(token),
+            isDeleted: false
+        }, (err ,sessions)=>{
+            if (err) {
+                console.log(err);
+                return res.send({
+                  success: false,
+                  message: 'Error: Server error'
+                });
+              }
+            
+            if (sessions == null) {
+                
+                return res.send({
+                    success: false,
+                    message: 'Error: Invalid'
+                });
+            } 
+            else {
+                // DO ACTION
+                return res.send({
+                  success: true,
+                  message: 'Good'
+                });
+            }
+        });
+
+    });
+    // log out
+    router.get('/logout',(req, res)=>{
+        const { query } = req;
+        const { token } = query;
+        const usersCollection = dbase.collection('users');
+        usersCollection.findOneAndUpdate({
+            _id: ObjectID(token),
+            isDeleted: false
+        },{
+            $set:{
+                isDeleted:true
+            }
+        }, null,(err, sessions)=>{
+            if (err) {
+                console.log(err);
+                return res.send({
+                  success: false,
+                  message: 'Error: Server error'
+                });
+              }
+              return res.send({
+                success: true,
+                message: 'Logged out'
+              });
+        });
+    });
 
     app.use('/api',router)
   });
@@ -146,13 +313,3 @@ MongoClient.connect('mongodb+srv://test:test@cluster0-hlkqt.mongodb.net/test?ret
 
     // });
 
-
-// const { body } = req;
-        // const { password } =body;
-        // let user = new UserSchema();
-        // user.username = username;
-        // user.email = email;
-        // user.password = user.generateHash(password);
-        // user.firstName = firstName;
-        // user.lastName = lastName;
-        // user.country = country;

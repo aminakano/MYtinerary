@@ -83,3 +83,24 @@ export function signUpUsers(userInfo){
             });
     }
 }
+
+export function LogInSuccess(userLoggedIn){
+    return {
+        type:"USER_LOGGEDIN",
+        userLoggedIn
+    }
+}
+export function LogInUsers(userInfo){
+    return dispatch =>{
+        fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'content-type': "application/x-www-form-urlencoded"
+            },
+            body: "username=" + userInfo.username + "&password=" + userInfo.password 
+        }).then(res => res.json())
+          .then(json =>{
+              console.log('json',json);
+          });
+    }
+}

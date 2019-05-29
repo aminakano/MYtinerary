@@ -4,7 +4,8 @@ const initState = {
     ],
     citiesIsLoaded: false,
     itineraries:{},
-    userAdded: false
+    userAdded: false,
+    userLoggedIn: false
 }
 function rootReducer(state = initState, action){
     if(action.type == "GET_CITIES"){
@@ -29,6 +30,12 @@ function rootReducer(state = initState, action){
         state= {
             ...state,
             userAdded : action.userAdded
+        }
+    }
+    if(action.type == "USER_LOGGEDIN"){
+        state ={
+            ...state,
+            userLoggedIn: action.userLoggedIn
         }
     }
     return state;
