@@ -141,15 +141,17 @@ MongoClient.connect('mongodb+srv://test:test@cluster0-hlkqt.mongodb.net/test?ret
         
         const { body } = req;
         const {
-                password
+                password , username
             } = body;
-        let {
-            email
-            } = body;
+        // let {
+        //     email
+        //     } = body;
+
         console.log(body);
         const usersCollection = dbase.collection('users');
         usersCollection.findOne({
-            email: email
+            // email: email
+            username : username
         }, (err, users)=>{
            
             if(err){
