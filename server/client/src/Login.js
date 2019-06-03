@@ -10,6 +10,7 @@ class Login extends Component {
                 <UserIcon />
                  
                 <LogInForm />
+            
             </div>
         );
     }

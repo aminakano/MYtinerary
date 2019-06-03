@@ -67,7 +67,7 @@ export function userSuccess(userAdded){
     }
 }
 export function signUpUsers(userInfo){
-    console.log(userInfo.username);
+    
     return dispatch =>{
         fetch('/api/users', {
             method: 'POST',
@@ -77,19 +77,21 @@ export function signUpUsers(userInfo){
             body: "username=" + userInfo.username + "&password=" + userInfo.password + "&email=" + userInfo.email + "&firstName=" + userInfo.firstName + "&lastName=" + userInfo.lastName + "&country=" + userInfo.country            
           }).then(res => res.json())
             .then(json => {
-              console.log('json', json);
-             
-              
-            });
+              console.log('json', json);            
+            })
+            .catch(err => console.error(err));
     }
 }
 
-export function LogInSuccess(userLoggedIn){
+export function UserLogged(userLoggedIn){
+   
     return {
         type:"USER_LOGGEDIN",
         userLoggedIn
     }
 }
+
+
 export function LogInUsers(userInfo){
     return dispatch =>{
         fetch('/api/login', {
@@ -100,7 +102,18 @@ export function LogInUsers(userInfo){
             body: "username=" + userInfo.username + "&password=" + userInfo.password 
         }).then(res => res.json())
           .then(json =>{
+              dispatch(UserLogged(true))
               console.log('json',json);
+              localStorage.setItem('token', json.token)
           });
+    }
+}
+
+
+export function UserLoggedOut(){
+    console.log("logout")
+    localStorage.removeItem('token')
+    return dispatch => {
+        dispatch(UserLogged(false))
     }
 }

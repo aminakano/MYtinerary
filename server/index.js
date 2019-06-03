@@ -12,7 +12,6 @@ const UserSchema = require('./User');
   
 MongoClient.connect('mongodb+srv://test:test@cluster0-hlkqt.mongodb.net/test?retryWrites=true', { useNewUrlParser: true } ,(err, db) => {
     // ... start the server
-    console.log(db)
     var dbase = db.db("MYtineraryDB");
       if (err) 
         return console.log(err)
@@ -81,13 +80,13 @@ MongoClient.connect('mongodb+srv://test:test@cluster0-hlkqt.mongodb.net/test?ret
         let {
         email
         } = body;
-        // let email = req.body.email;
+        
         
         email = email.toLowerCase();
         email = email.trim();
         
         usersCollection.findOne({
-            email:email
+            email:email            
             
         },(err, previousUsers)=>{
             console.log(previousUsers)
@@ -155,7 +154,7 @@ MongoClient.connect('mongodb+srv://test:test@cluster0-hlkqt.mongodb.net/test?ret
         }, (err, users)=>{
            
             if(err){
-                // console.log('err 2:',err);
+                
                 return res.send({
                     success:false,
                     message: "Error: Server error"

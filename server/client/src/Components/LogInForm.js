@@ -9,14 +9,14 @@ const initialState = {
     rememberMe: false,
     usernameError: "",
     passwordError: "",
-    
+    rememberMeError: ""
   };
 class LogInForm extends Component {
     constructor(props){
         super(props);
         this.state = initialState;
             
-        
+        console.log(this.props.userLoggedIn)
         // this.onChange = this.onChange.bind(this);
         // this.onSubmit = this.onSubmit.bind(this);
     }
@@ -32,7 +32,7 @@ class LogInForm extends Component {
     validate= () =>{
         let usernameError = "";
         let passwordError = "";
-       
+        let rememberMeError = "";
     
         if (!this.state.username) {
           usernameError = "Username cannot be blank";
@@ -40,9 +40,12 @@ class LogInForm extends Component {
         if (!this.state.password) {
             passwordError = "Password is mandatory";
           }
+        if (!this.state.rememberMe) {
+           rememberMeError = "Please check it!";
+        }
            
-        if (usernameError || passwordError) {
-          this.setState({ usernameError , passwordError });
+        if (usernameError || passwordError ||rememberMeError) {
+          this.setState({ usernameError , passwordError ,rememberMeError });
           return false;
         }
    
@@ -96,17 +99,22 @@ class LogInForm extends Component {
                     value ={this.state.rememberMe}
                     defaultChecked={false}
                     /> Remember me
-                </div>  
+                </div>
+                <div style={{ fontSize: 12, color: "red" }}>
+                            {this.state.rememberMeError}
+                </div>
                 <button type="submit" className="signUpBtn">OK</button>
                 <button className="LogInGoogle"><i className="fab fa-google"></i>&nbsp;Log in with Google</button> 
-                {/* <button>Log in with Facebook</button>  */}
+                
                 <p className="leadsToAccount">Don't have a MYtinerary account yet? You should create one! It's totally free and only takes a minute.</p>
                 <div className="linkToAccount"><a href="/Account">Create Account</a></div>
+                <div onClick={this.props.LogOutUser}>logout</div>
             </form>
         );
     }
 }
 const mapStateToProps =(state)=>{
+  
     return {
         userLoggedIn: state.userLoggedIn,
         
@@ -116,6 +124,9 @@ const mapDispatchToProps =(dispatch)=>{
     return {
         LogInUsers: (user) => {
             dispatch(actionCreator.LogInUsers(user))
+        },
+        LogOutUser: () => {
+          dispatch(actionCreator.UserLoggedOut())
         }
     }
 }
