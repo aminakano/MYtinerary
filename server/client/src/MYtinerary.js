@@ -7,6 +7,7 @@ import ShowItinerary from './ShowItinerary';
 import './Styles/Mytinerary.css';
 
 let cityUrl = window.location.pathname.split("/")[2];
+console.log(cityUrl)
 
 
 class MYtinerary extends Component {

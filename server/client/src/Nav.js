@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import './Styles/Nav.css'
+import { Link } from 'react-router-dom';
+
 class Hamburger extends Component {
     render(){
         return(
+        
         <div className="Nav">
             <input id="menu-cb" type="checkbox" value="off"/>
             <label id="menu-icon" htmlFor="menu-cb"><i className="fas fa-bars"></i></label>
@@ -10,23 +13,25 @@ class Hamburger extends Component {
             <div id="ham-menu">
                 <ul className="navLink">
                     <li>
-                        <a href="/">Home</a>
+                        <Link to="/">Home</Link>         
                     </li>
-                    <li>
-                        <a href="/MYtinerary">MYtinerary</a>
+                    <li>                       
+                        <Link to="/MYtinerary/:city">MYtinerary</Link>
                     </li>
-                    <li>
-                        <a href="/Cities">Cities</a>
+                    <li>                      
+                        <Link to="/Cities">Cities</Link>    
                     </li>
-                    <li>
-                        <a href="/Account">Account</a>
+                    <li>                        
+                        <Link to="/Account">Account</Link>
                     </li>
-                    <li>
-                        <a href="/Login">Login</a>
+                    <li>                        
+                        <Link to="/Login">Login</Link>
                     </li>
                 </ul> 
             </div>
         </div>
+        
+        
         )
     }
 

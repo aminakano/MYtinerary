@@ -1,53 +1,41 @@
 import React, { Component } from 'react';
-import {
-    connect
-} from 'react-redux';
+import { connect } from 'react-redux';
 import * as actionCreator from './Store/Actions/actions';
-
+import { Link } from 'react-router-dom';
 class UserIcon extends Component {
     render(){
         const styles ={
             width:'55%',          
-        } 
-            
-            if (this.props.userLoggedIn === true){
-                return(
-                    <div style={styles}>
-                        <details>
-                            <summary><div className="User"><i className="fas fa-user-circle"></i></div></summary>
-                            <div className="build">
-                            <div onClick={this.props.LogOutUser}>Log out</div>
-                            </div>
-                        </details>
+        }        
+        const userLinks = (
+            <div onClick={this.props.LogOutUser}>Log out</div>
+        );
+        const guestLinks = (
+                <div className="LoginLinks">
+                    <div><Link to="/Login">Log in</Link></div>
+                    <div><Link to="/Account">Create Account</Link></div>
+                </div>                      
+        );
+        const userLoggedIn = this.props.userLoggedIn;
+        
+        return(
+            <div style={styles}>
+                <details>
+                    <summary><div className="User"><i className="fas fa-user-circle"></i></div></summary>
+                    <div className="build">
+                        {userLoggedIn ? userLinks : guestLinks}
                     </div>
-                )
-            }
-            else{          
-                return(
-                <div style={styles}>
-                    <details>
-                        <summary><div className="User"><i className="fas fa-user-circle"></i></div></summary>
-                        <div className="build">
-                            <div className="LoginLinks">
-                            <div><a href="/Login">Log in</a></div>
-                            <div><a href="/Account">Create Account</a></div>                       
-                            </div>
-                        </div>
-                        
-                    </details>                
-                </div>
-            )
-        }
+                </details>
+            </div>
+        )
     }
 }
-
-// export default UserIcon;
 
 const mapStateToProps = (state) => {
 
     return {
         userLoggedIn: state.userLoggedIn,
-
+        
     }
 }
 const mapDispatchToProps = (dispatch) => {

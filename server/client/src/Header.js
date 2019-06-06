@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import sitelogo from './MYtineraryLogo.png';
-import arrow from './right-arrow.png';
+import sitelogo from '../src/icons/MYtineraryLogo.png';
+import arrow from '../src/icons/right-arrow.png';
 import UserIcon from './UserIcon';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
     render(){
@@ -21,15 +22,13 @@ class Header extends Component {
         return(
             
             <div>
-                <div style={styles}>
-                   
+                <div style={styles}>  
                     <UserIcon />
-                    
                 </div>
                 <img src={sitelogo} className='Site-logo' alt="logo"/>
                 <p className="Italic">Find your perfect trip, designed by insiders who know and love their cities.</p>
                 <h4 style={pattaya}>Start Browsing</h4>
-                <a href='./Cities'><img src={arrow} className='Right-arrow' alt="to-the-right"/></a>
+                <Link to='./Cities'><img src={arrow} className='Right-arrow' alt="to-the-right"/></Link>
             </div>
         )
     }

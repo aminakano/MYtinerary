@@ -112,8 +112,11 @@ export function LogInUsers(userInfo){
 
 export function UserLoggedOut(){
     console.log("logout")
+    
+    if (window.confirm('Log out?')) {
     localStorage.removeItem('token')
     return dispatch => {
         dispatch(UserLogged(false))
+        }
     }
 }

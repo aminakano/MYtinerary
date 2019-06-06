@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CityData from './json.json';
 import CityDisplay from './CityDisplay';
+import City from './City';
 import { connect } from 'react-redux';
 import * as actionCreator from './Store/Actions/actions';
 
@@ -16,6 +17,9 @@ class Filter extends Component{
         var cityName = city.charAt(0).toLowerCase()+city.slice(1).replace(/\s+/g, "").toLowerCase();
         
         window.location.href = "MYtinerary/" + cityName;
+    }
+    route = city => {
+        return `/MYtinerary/${city.cityName}`
     }   
     filterList=(e)=>{
         if(e.target.value == "") {
@@ -29,20 +33,9 @@ class Filter extends Component{
         }
     }
     render(){
-        if(this.props.citiesIsLoaded == true ){
-            this.state.counter++;
-
-            if(this.state.counter == 1){
-                this.setState({
-                    filtered:this.props.cities
-                })
-            }    
-        }
+        
         //stylings
-        const styles={
-            width:'90%',
-            height:'15vh'
-        };    
+           
         const formStyle ={
             display:'flex',
             justifyContent:'center',
@@ -55,6 +48,7 @@ class Filter extends Component{
                 if(a.cityName > b.cityName) return 1;
                 return 0;
             })
+            
         return(
             <div>
                 <form style={formStyle}>
@@ -63,11 +57,7 @@ class Filter extends Component{
                 <div className="cities">                   
                     {sortArray.map((obj, index)=>{
                         return( 
-                            <div onClick={ ()=> {this.handleButtonValue(obj.cityName)}} key={index}>
-                                <div className="cityNames">{obj.cityName}
-                                </div>
-                                <img src={obj.image} alt="destinations" style={styles}/>
-                            </div>
+                            <City key={index} city={obj}></City>
                         )
                     })}
                 </div>
@@ -83,6 +73,17 @@ class Filter extends Component{
     componentDidMount(){
         this.props.fetchCities();
     
+    }
+    componentWillReceiveProps(nextProps){
+        if(nextProps.citiesIsLoaded == true ){
+            this.state.counter++;
+
+            if(this.state.counter == 1){
+                this.setState({
+                    filtered:nextProps.cities
+                })
+            }    
+        }
     }
 }
 
@@ -105,3 +106,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(Filter);
 // {this.state.filtered.map((obj, index)=>{
 //     return( <div><div className="cityNames">{obj.name}</div><img src={obj.image} alt="destinations" style={styles}/></div>)
 //  })}
+
+
+
+// onClick = {
+//     () => {
+//         this.handleButtonValue(obj.cityName)
+//     }
+// }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../Styles/SignUpForm.css';
 import { connect } from 'react-redux';
 import * as actionCreator from '../Store/Actions/actions';
+import { Link } from 'react-router-dom';
 
 const initialState = {
     username: "",
@@ -82,7 +83,7 @@ class LogInForm extends Component {
                 <div className="formParts">              
                     <label>Password:</label>
                     <input
-                    type="text"
+                    type="password"
                     name="password"
                     placeholder="Password"
                     value ={this.state.password}
@@ -107,7 +108,7 @@ class LogInForm extends Component {
                 <button className="LogInGoogle"><i className="fab fa-google"></i>&nbsp;Log in with Google</button> 
                 
                 <p className="leadsToAccount">Don't have a MYtinerary account yet? You should create one! It's totally free and only takes a minute.</p>
-                <div className="linkToAccount"><a href="/Account">Create Account</a></div>
+                <div className="linkToAccount"><Link to="/Account">Create Account</Link></div>
                 <div onClick={this.props.LogOutUser}>logout</div>
             </form>
         );

@@ -192,7 +192,7 @@ summary {
   height:75vh;
  
 }
-.cities > div{
+.city{
   display: flex;
   flex-direction: column;
   justify-content: center;

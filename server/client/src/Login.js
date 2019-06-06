@@ -8,7 +8,6 @@ class Login extends Component {
             <div>
                 <Hamburger />
                 <UserIcon />
-                 
                 <LogInForm />
             
             </div>
