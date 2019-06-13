@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import Slide from './Slide';
-import amsterdam from '../src/images/amsterdam.jpg';
-import athens from '../src/images/athens.jpg';
-import barcelona from '../src/images/barcelona.jpg';
-import berlin from '../src/images/berlin.jpg';
-import buenos_aires from '../src/images/buenos_aires.jpg';
-import london from '../src/images/london.jpg';
-import los_angeles from '../src/images/los_angeles.jpg';
-import new_york from '../src/images/new_york.jpg';
-import paris from '../src/images/paris.jpg';
-import rome from '../src/images/rome.jpg';
-import stockholm from '../src/images/stockholm.jpg';
-import zurich from '../src/images/zurich.jpeg';
+import amsterdam from '../images/amsterdam.jpg';
+import athens from '../images/athens.jpg';
+import barcelona from '../images/barcelona.jpg';
+import berlin from '../images/berlin.jpg';
+import buenos_aires from '../images/buenos_aires.jpg';
+import london from '../images/london.jpg';
+import los_angeles from '../images/los_angeles.jpg';
+import new_york from '../images/new_york.jpg';
+import paris from '../images/paris.jpg';
+import rome from '../images/rome.jpg';
+import stockholm from '../images/stockholm.jpg';
+import zurich from '../images/zurich.jpeg';
 const imageArray = [
     amsterdam,
     athens,

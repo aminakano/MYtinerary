@@ -14,11 +14,17 @@ class Filter extends Component{
         }       
     } 
     handleButtonValue = (city)=>{
-        var cityName = city.charAt(0).toLowerCase()+city.slice(1).replace(/\s+/g, "").toLowerCase();
+        var cityName =
+          city.charAt(0).toLowerCase() +
+          city
+            .slice(1)
+            .replace(/\s+/g, "")
+            .toLowerCase();
         
         window.location.href = "MYtinerary/" + cityName;
     }
     route = city => {
+         
         return `/MYtinerary/${city.cityName}`
     }   
     filterList=(e)=>{

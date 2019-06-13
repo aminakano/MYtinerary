@@ -105,7 +105,9 @@ class LogInForm extends Component {
                             {this.state.rememberMeError}
                 </div>
                 <button type="submit" className="signUpBtn">OK</button>
-                <button className="LogInGoogle"><i className="fab fa-google"></i>&nbsp;Log in with Google</button> 
+                <button className="LogInGoogle">
+                  <a href="/auth/google"><i className="fab fa-google"></i>&nbsp;Log in with Google</a>
+                </button> 
                 
                 <p className="leadsToAccount">Don't have a MYtinerary account yet? You should create one! It's totally free and only takes a minute.</p>
                 <div className="linkToAccount"><Link to="/Account">Create Account</Link></div>

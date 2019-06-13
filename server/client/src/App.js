@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
-import MyCarrousel from './MyCarrousel';
+import '../src/Styles/App.css';
+import MyCarrousel from '../src/Components/MyCarrousel';
 import Header from './Header';
 import Hamburger from './Nav';
 

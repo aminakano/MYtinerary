@@ -8,11 +8,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 const async = require('async');
 const UserSchema = require('./User');
+const authRoutes = require('./routes/auth-routes');
+app.use('/auth',authRoutes);
+const passportSetup = require('./config/passport-setup');
 
-  
 MongoClient.connect('mongodb+srv://test:test@cluster0-hlkqt.mongodb.net/test?retryWrites=true', { useNewUrlParser: true } ,(err, db) => {
     // ... start the server
-    var dbase = db.db("MYtineraryDB");
+    var dbase = db.db("MYtineraryDB");  
       if (err) 
         return console.log(err)
       

@@ -4,10 +4,10 @@ import './Styles/SliderStyle.css';
 class ShowItinerary extends Component {
     
     render(){
-        console.log(this.props.images)
+        
         const imageArray = this.props.images;
 
-        console.log(imageArray)
+        
 
     if(imageArray != undefined){
 
