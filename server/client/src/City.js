@@ -25,8 +25,7 @@ class City extends Component {
           <div className="cityNames"> {city.cityName} </div>
           <img src={city.image} alt="destinations" style={styles} />
         </div>
-      </NavLink>
-      
+      </NavLink>     
     );
   }
 }

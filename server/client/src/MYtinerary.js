@@ -7,8 +7,6 @@ import ShowItinerary from './ShowItinerary';
 import './Styles/Mytinerary.css';
 
 let cityUrl = window.location.pathname.split("/")[2];
-console.log(cityUrl)
-
 
 class MYtinerary extends Component {
     constructor(){
@@ -19,6 +17,7 @@ class MYtinerary extends Component {
         };
     }
     componentDidMount(){
+        // const {cityURL} = this.props.match.params
         this.props.fetchItineraries(cityUrl);
     }
     isObjectEmpty = (obj)=>{
@@ -27,16 +26,14 @@ class MYtinerary extends Component {
         }else{
             return false
         }
-    }    
-    
-    
+    }       
     render() {
        
         const margin = {
             margin: '0'
         }
         
-        if(this.isObjectEmpty(this.props.itineraries)=== false ){
+        if(this.isObjectEmpty(this.props.itineraries)=== false){
             const itineraries = this.props.itineraries.itineraries;
        
         return (

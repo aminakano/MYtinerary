@@ -12,7 +12,8 @@ export const getCitiesIsLoaded=(citiesIsLoaded)=>{
     }
 }
 export function fetchCities(){
-    console.log('hello')
+    console.log('fetch cities');
+    
     return dispatch =>{
         fetch("/api/cities",{
             method: "GET",
@@ -29,6 +30,8 @@ export function fetchCities(){
         }) 
         .catch(err => console.error(err))
     }
+
+
 }
 
 export const getItineraries=(itineraries)=>{
@@ -38,7 +41,10 @@ export const getItineraries=(itineraries)=>{
     }
 }
 export function fetchItineraries(city){
+    console.log("fetch itineraries");
     return dispatch =>{
+        
+        // fetch(`/api/itineraries/${param}`,{
         fetch("/api/itineraries/" + city,{
             method:"GET",
             mode: "no-cors",

@@ -208,6 +208,7 @@ summary {
   width:8em;
   text-align: center;
   border-radius: 5px;
+  color: #363942;
 }
 input[type="text"]:focus{
   /* border-bottom: 3px solid black ; */
