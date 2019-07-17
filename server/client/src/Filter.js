@@ -13,22 +13,22 @@ class Filter extends Component{
             counter: 0,
         }       
     } 
-    handleButtonValue = (city)=>{
-        var cityName =
-          city.charAt(0).toLowerCase() +
-          city
-            .slice(1)
-            .replace(/\s+/g, "")
-            .toLowerCase();
+    // handleButtonValue = (city)=>{
+    //     var cityName =
+    //       city.charAt(0).toLowerCase() +
+    //       city
+    //         .slice(1)
+    //         .replace(/\s+/g, "")
+    //         .toLowerCase();
         
-        window.location.href = "MYtinerary/" + cityName;
-    }
-    route = city => {
-         
-        return `/MYtinerary/${city.cityName}`
-    }   
+    //     window.location.href = "MYtinerary/" + cityName;
+    // }
+    // route = city => {  
+    //     return `/MYtinerary/${city.cityName}`
+    // }
+     
     filterList=(e)=>{
-        if(e.target.value == "") {
+        if(e.target.value === "") {
             this.setState({filtered: this.props.cities})
 
         } else {
@@ -39,7 +39,7 @@ class Filter extends Component{
         }
     }
     render(){
-        
+       
         //stylings
            
         const formStyle ={
@@ -48,7 +48,7 @@ class Filter extends Component{
             paddingBottom:'5%'
         }
         // sorting array ascending
-        if(this.props.citiesIsLoaded == true){
+        if(this.props.citiesIsLoaded === true){
             const sortArray = this.state.filtered.sort(function(a,b){
                 if(a.cityName < b.cityName) return -1;
                 if(a.cityName > b.cityName) return 1;
@@ -81,10 +81,10 @@ class Filter extends Component{
     
     }
     componentWillReceiveProps(nextProps){
-        if(nextProps.citiesIsLoaded == true ){
+        if(nextProps.citiesIsLoaded === true ){
             this.state.counter++;
 
-            if(this.state.counter == 1){
+            if(this.state.counter === 1){
                 this.setState({
                     filtered:nextProps.cities
                 })

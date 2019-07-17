@@ -5,7 +5,9 @@ const initState = {
     citiesIsLoaded: false,
     itineraries:{},
     userAdded: false,
-    userLoggedIn: false
+    userLoggedIn: false,
+    intinerariesIsLoaded: false,
+    user:{}
 }
 function rootReducer(state = initState, action){
     if(action.type == "GET_CITIES"){
@@ -38,6 +40,20 @@ function rootReducer(state = initState, action){
             userLoggedIn: action.userLoggedIn
         }
     }
+    if (action.type == "ITINERARIES_IS_LOADED") {
+      state = {
+        ...state,
+        intinerariesIsLoaded: action.intinerariesIsLoaded
+      };
+    }
+
+    if (action.type == "TOKEN_EXISTS") {
+      state = {
+        ...state,
+        user: action.user
+      };
+    }
+
     return state;
 }
 

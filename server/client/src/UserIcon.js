@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import * as actionCreator from './Store/Actions/actions';
 import { Link } from 'react-router-dom';
 class UserIcon extends Component {
+    componentDidMount(){
+        if(localStorage['token'])
+            this.props.userToken(localStorage["token"]);
+    }
     render(){
         const styles ={
             width:'55%',          
@@ -17,7 +21,7 @@ class UserIcon extends Component {
                 </div>                      
         );
         const userLoggedIn = this.props.userLoggedIn;
-        
+        console.log(this.props.user)
         return(
             <div style={styles}>
                 <details>
@@ -35,6 +39,7 @@ const mapStateToProps = (state) => {
 
     return {
         userLoggedIn: state.userLoggedIn,
+        user: state.user
         
     }
 }
@@ -45,6 +50,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         LogOutUser: () => {
             dispatch(actionCreator.UserLoggedOut())
+        },
+        userToken: (token) => {
+            dispatch(actionCreator.userToken(token));
         }
     }
 }

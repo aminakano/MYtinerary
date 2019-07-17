@@ -5,6 +5,13 @@ export const getCities=(cities)=>{
     }
 }
 
+export const intinerariesIsLoaded = (intinerariesIsLoaded) => {
+    return {
+        type: "ITINERARIES_IS_LOADED",
+        intinerariesIsLoaded
+    }
+}
+
 export const getCitiesIsLoaded=(citiesIsLoaded)=>{
     return {
         type: "CITIES_LOADED",
@@ -12,7 +19,6 @@ export const getCitiesIsLoaded=(citiesIsLoaded)=>{
     }
 }
 export function fetchCities(){
-    console.log('fetch cities');
     
     return dispatch =>{
         fetch("/api/cities",{
@@ -41,10 +47,8 @@ export const getItineraries=(itineraries)=>{
     }
 }
 export function fetchItineraries(city){
-    console.log("fetch itineraries");
     return dispatch =>{
         
-        // fetch(`/api/itineraries/${param}`,{
         fetch("/api/itineraries/" + city,{
             method:"GET",
             mode: "no-cors",
@@ -56,7 +60,9 @@ export function fetchItineraries(city){
        
         .then(response => response.json())
         .then(res =>{
+            console.log(res);
             dispatch(getItineraries(res))
+            dispatch(intinerariesIsLoaded(true));
         })
         // .then(json => {
         //     console.log(json);
@@ -117,12 +123,38 @@ export function LogInUsers(userInfo){
 
 
 export function UserLoggedOut(){
-    console.log("logout")
-    
+    console.log("logout")    
     if (window.confirm('Log out?')) {
     localStorage.removeItem('token')
     return dispatch => {
         dispatch(UserLogged(false))
         }
     }
+}
+
+export function userToken(token){
+    return dispatch => {
+        fetch("/api/verify?token="+token, {
+          method: "GET",
+          mode: "no-cors",
+          headers: {
+            accept: "application/json",
+            "content-type": "application/x-www-form-urlencoded"
+          }
+        })
+          .then(res => res.json())
+          .then(
+              res =>{
+                  dispatch(UserTokenIsValid(res));
+              }
+          )
+          .catch(err => console.error(err));
+    }
+}
+
+export function UserTokenIsValid(user){
+        return {
+          type: "TOKEN_EXISTS",
+          user
+        };
 }

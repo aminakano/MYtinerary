@@ -104,14 +104,6 @@ MongoClient.connect('mongodb+srv://test:test@cluster0-hlkqt.mongodb.net/test?ret
                 });
             } 
        
-        // let user = new UserSchema({ 
-        //     username: req.body.username,
-        //     password: req.body.password,
-        //     email: req.body.email,
-        //     firstName: req.body.firstName,
-        //     lastName: req.body.lastName,
-        //     country: req.body.country
-        // });
         let newUser = new UserSchema();
         newUser.username = username;
         newUser.password = newUser.generateHash(password);
@@ -184,24 +176,6 @@ MongoClient.connect('mongodb+srv://test:test@cluster0-hlkqt.mongodb.net/test?ret
                 token: users._id
             });  
 
-
-            // let userSession = new UserSchema({ 
-            //     username: req.body.username,
-            //     password: req.body.password,
-            // });
-            // userSession.userId = user._id;
-        //     userSession.save((err, doc) => {
-        //         if (err) {
-        //           console.log(err);
-        //           return res.send({
-        //             success: false,
-        //             message: 'Error: server error'
-        //           });
-        //         }
-                        
-        // });
-             
-
      });
     });
     // verify
@@ -209,10 +183,11 @@ MongoClient.connect('mongodb+srv://test:test@cluster0-hlkqt.mongodb.net/test?ret
         const { query } = req;
         const { token } = query;
         const usersCollection = dbase.collection('users');
+        console.log(token)
         usersCollection.findOne({
-            _id: ObjectID(token),
-            isDeleted: false
-        }, (err ,sessions)=>{
+            '_id': ObjectID(token),
+
+        },(err ,sessions)=>{
             if (err) {
                 console.log(err);
                 return res.send({
@@ -220,9 +195,9 @@ MongoClient.connect('mongodb+srv://test:test@cluster0-hlkqt.mongodb.net/test?ret
                   message: 'Error: Server error'
                 });
               }
-            
+            console.log(sessions)
             if (sessions == null) {
-                
+
                 return res.send({
                     success: false,
                     message: 'Error: Invalid'
@@ -232,7 +207,8 @@ MongoClient.connect('mongodb+srv://test:test@cluster0-hlkqt.mongodb.net/test?ret
                 // DO ACTION
                 return res.send({
                   success: true,
-                  message: 'Good'
+                  message: 'Good',
+                  user: sessions
                 });
             }
         });
